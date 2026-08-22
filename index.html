@@ -452,10 +452,6 @@
       display: block;
     }
 
-    .cd-val::after {
-      content: '';
-    }
-
     .cd-lbl {
       font-size: 0.65rem;
       font-weight: 700;
@@ -465,10 +461,31 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE LUXURY PINK & GOLD THEME ─── */
+    /* ─── STAGE 5: GRAND FINALE WITH COUPLE BACKGROUND IMAGE ─── */
     #stage5 {
-      background: radial-gradient(circle at center, #ffffff 0%, #fff2f6 50%, #ffe4ee 100%);
+      background: url('images/couple.jpg') no-repeat center 15% / cover;
       color: #3d1a24;
+      position: relative;
+    }
+
+    /* Blurred glass overlay for Stage 5 to make text perfectly readable */
+    #stage5::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 242, 246, 0.88) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 0;
+    }
+
+    #stage5 .stage-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    #stage5 #stars-bg {
+      z-index: 1;
     }
 
     .finale-portrait-wrap {
@@ -807,7 +824,7 @@
   </div>
 </div>
 
-<!-- ─── STAGE 5: GRAND FINALE PERFECT CIRCLE COUPLE PHOTO ─── -->
+<!-- ─── STAGE 5: GRAND FINALE WITH BLURRED COUPLE PHOTO BACKGROUND ─── -->
 <div class="stage" id="stage5">
   <div class="particles-bg" id="stars-bg"></div>
 
@@ -1019,7 +1036,6 @@
     const s = document.createElement('div');
     s.style.position = 'absolute';
     
-    // Choose randomly between a golden star and a glowing pink bokeh bubble
     if (Math.random() > 0.5) {
       s.textContent = '✨';
       s.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
