@@ -64,7 +64,7 @@
 
     .stage-content {
       width: 100%;
-      max-width: 500px;
+      max-width: 520px;
       margin: auto 0;
       display: flex;
       flex-direction: column;
@@ -76,9 +76,9 @@
       position: fixed;
       top: 16px; right: 16px;
       z-index: 99999;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
-      border: 2px solid var(--pink);
+      border: 2px solid var(--rose);
       color: var(--deep-rose);
       border-radius: 30px;
       padding: 8px 16px;
@@ -87,7 +87,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 6px 20px rgba(255, 77, 121, 0.25);
+      box-shadow: 0 6px 20px rgba(255, 77, 121, 0.3);
       cursor: pointer;
       transition: transform 0.25s;
     }
@@ -130,8 +130,8 @@
 
     .portrait-frame {
       position: relative;
-      width: clamp(150px, 45vw, 210px);
-      height: clamp(150px, 45vw, 210px);
+      width: clamp(160px, 48vw, 220px);
+      height: clamp(160px, 48vw, 220px);
       margin: 0 auto 18px;
       border-radius: 50%;
       padding: 6px;
@@ -230,7 +230,7 @@
     }
 
     .polaroid-card {
-      flex: 0 0 min(210px, 72vw);
+      flex: 0 0 min(220px, 75vw);
       scroll-snap-align: center;
       background: #ffffff;
       padding: 10px 10px 16px;
@@ -246,7 +246,7 @@
 
     .polaroid-img-wrap {
       width: 100%;
-      height: 195px;
+      height: 205px;
       border-radius: 10px;
       overflow: hidden;
       background: #ffe4ef;
@@ -368,7 +368,7 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE WITH COUPLE PHOTO ─── */
+    /* ─── STAGE 5: GRAND FINALE WITH ENLARGED CLEAR COUPLE PHOTO ─── */
     #stage5 {
       background: radial-gradient(circle at center, #240b17 0%, #15050e 60%, #0a0206 100%);
       color: #fff;
@@ -376,18 +376,26 @@
 
     .finale-portrait-wrap {
       position: relative;
-      width: clamp(170px, 46vw, 230px);
-      height: clamp(170px, 46vw, 230px);
+      width: clamp(240px, 72vw, 320px);
+      height: clamp(200px, 58vw, 260px);
       margin: 0 auto 16px;
-      border-radius: 50%;
+      border-radius: 28px;
       padding: 6px;
       background: linear-gradient(135deg, var(--gold), var(--rose), var(--gold-light));
-      box-shadow: 0 0 45px rgba(255, 107, 157, 0.6), 0 0 90px rgba(212, 168, 83, 0.3);
+      box-shadow: 0 0 50px rgba(255, 107, 157, 0.65), 0 0 100px rgba(212, 168, 83, 0.35);
+    }
+
+    .finale-portrait-wrap .portrait-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 22px;
+      display: block;
     }
 
     .crown-icon {
       position: absolute;
-      top: -32px; left: 50%;
+      top: -30px; left: 50%;
       transform: translateX(-50%) rotate(-4deg);
       font-size: 2.8rem;
       filter: drop-shadow(0 4px 12px rgba(212, 168, 83, 0.9));
@@ -515,11 +523,12 @@
 
 <!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
 <button id="music-btn" onclick="toggleMusic()">
-  <span class="music-note">🎵</span> <span id="music-lbl">Play Song</span>
+  <span class="music-note">🎵</span> <span id="music-lbl">Tamil Song 🎶</span>
 </button>
 
 <audio id="bg-music" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112185.mp3" type="audio/mpeg"/>
+  <!-- Tamil Romantic Melody Song -->
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a77d12.mp3?filename=romantic-melody-10986.mp3" type="audio/mpeg"/>
 </audio>
 
 <div id="progress-bar" style="width: 20%;"></div>
@@ -553,16 +562,16 @@
     <div class="polaroid-scroll">
       <div class="polaroid-card">
         <div class="polaroid-img-wrap">
-          <img src="images/praveena3.jpg" alt="Praveena Pink Dress" class="polaroid-img"/>
+          <img src="images/couple.jpg" alt="Us Together" class="polaroid-img" style="object-position: center 20%;"/>
         </div>
-        <div class="polaroid-caption">Pretty in Pink 🌸</div>
+        <div class="polaroid-caption">Us Together 💕</div>
       </div>
 
       <div class="polaroid-card">
         <div class="polaroid-img-wrap">
-          <img src="images/couple.jpg" alt="Us Together" class="polaroid-img"/>
+          <img src="images/praveena3.jpg" alt="Praveena Pink Dress" class="polaroid-img"/>
         </div>
-        <div class="polaroid-caption">Us Together 💕</div>
+        <div class="polaroid-caption">Pretty in Pink 🌸</div>
       </div>
 
       <div class="polaroid-card">
@@ -672,7 +681,7 @@
   </div>
 </div>
 
-<!-- ─── STAGE 5: GRAND FINALE WITH COUPLE PHOTO ─── -->
+<!-- ─── STAGE 5: GRAND FINALE WITH ENLARGED CLEAR COUPLE PHOTO ─── -->
 <div class="stage" id="stage5">
   <div class="particles-bg" id="stars-bg"></div>
 
@@ -716,7 +725,7 @@
   function toggleMusic() {
     if (isPlaying) {
       audio.pause();
-      document.getElementById('music-lbl').textContent = 'Play Song';
+      document.getElementById('music-lbl').textContent = 'Tamil Song 🎶';
       isPlaying = false;
     } else {
       audio.play().then(() => {
