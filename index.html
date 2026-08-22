@@ -194,7 +194,7 @@
       line-height: 1.5;
     }
 
-    /* ─── STAGE 2: MEMORIES POLAROID GALLERY (VERTICAL PORTRAIT RATIO) ─── */
+    /* ─── STAGE 2: MEMORIES POLAROID GALLERY (VERTICAL PORTRAIT CARDS) ─── */
     #stage2 {
       background: radial-gradient(circle at center, #fff8fb 0%, #ffe4ef 50%, #ffd6e7 100%);
     }
@@ -246,7 +246,7 @@
 
     .polaroid-img-wrap {
       width: 100%;
-      height: clamp(270px, 60vh, 310px); /* Tall Vertical Portrait Shape */
+      height: clamp(270px, 60vh, 310px);
       border-radius: 12px;
       overflow: hidden;
       background: #ffe4ef;
@@ -524,11 +524,11 @@
 
 <!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
 <button id="music-btn" onclick="userToggleMusic()">
-  <span class="music-note">🎵</span> <span id="music-lbl">Play Song 🎶</span>
+  <span class="music-note">🎵</span> <span id="music-lbl">Pemari Song 🎶</span>
 </button>
 
 <audio id="bg-music" loop preload="auto" playsinline>
-  <!-- Desktop WhatsApp Audio file -->
+  <!-- Pemari Tamil Song -->
   <source src="song.mp3" type="audio/mpeg"/>
   <source src="song2.mp3" type="audio/mpeg"/>
 </audio>
@@ -791,7 +791,7 @@
       audio.pause();
       stopSynth();
       isMusicPlaying = false;
-      document.getElementById('music-lbl').textContent = 'Play Song 🎶';
+      document.getElementById('music-lbl').textContent = 'Pemari Song 🎶';
     } else {
       audio.play().then(() => {
         isMusicPlaying = true;
