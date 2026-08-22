@@ -29,7 +29,7 @@
       user-select: none;
     }
 
-    /* ─── STAGES (MOBILE OPTIMIZED WITH DVH) ─── */
+    /* ─── STAGES ─── */
     .stage {
       position: fixed;
       inset: 0;
@@ -62,7 +62,6 @@
       transform: scale(1.04) translateY(-40px);
     }
 
-    /* Content container inside stage */
     .stage-content {
       width: 100%;
       max-width: 500px;
@@ -70,6 +69,39 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    /* ─── FLOATING MUSIC PLAYER BUTTON ─── */
+    #music-btn {
+      position: fixed;
+      top: 16px; right: 16px;
+      z-index: 99999;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(10px);
+      border: 2px solid var(--pink);
+      color: var(--deep-rose);
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 20px rgba(255, 77, 121, 0.25);
+      cursor: pointer;
+      transition: transform 0.25s;
+    }
+
+    #music-btn:active { transform: scale(0.92); }
+
+    .music-note {
+      font-size: 1.1rem;
+      animation: noteSpin 2s linear infinite;
+    }
+
+    @keyframes noteSpin {
+      0%, 100% { transform: scale(1) rotate(-5deg); }
+      50%      { transform: scale(1.2) rotate(10deg); }
     }
 
     /* ─── BACKGROUND PARTICLES ─── */
@@ -91,7 +123,7 @@
       100% { opacity:0; transform: translateY(-80px) rotate(360deg) scale(1.1); }
     }
 
-    /* ─── STAGE 1: WELCOME HERO (MOBILE FIRST) ─── */
+    /* ─── STAGE 1: HERO ─── */
     #stage1 {
       background: radial-gradient(circle at center, #ffffff 0%, #fff0f5 50%, #ffd6e7 100%);
     }
@@ -162,7 +194,7 @@
       line-height: 1.5;
     }
 
-    /* ─── STAGE 2: MEMORIES POLAROID GALLERY (MOBILE CAROUSEL/GRID) ─── */
+    /* ─── STAGE 2: MEMORIES POLAROID GALLERY ─── */
     #stage2 {
       background: radial-gradient(circle at center, #fff8fb 0%, #ffe4ef 50%, #ffd6e7 100%);
     }
@@ -198,7 +230,7 @@
     }
 
     .polaroid-card {
-      flex: 0 0 min(220px, 75vw);
+      flex: 0 0 min(210px, 72vw);
       scroll-snap-align: center;
       background: #ffffff;
       padding: 10px 10px 16px;
@@ -210,10 +242,11 @@
     .polaroid-card:nth-child(1) { transform: rotate(-2deg); }
     .polaroid-card:nth-child(2) { transform: rotate(1deg); }
     .polaroid-card:nth-child(3) { transform: rotate(-1deg); }
+    .polaroid-card:nth-child(4) { transform: rotate(2deg); }
 
     .polaroid-img-wrap {
       width: 100%;
-      height: 200px;
+      height: 195px;
       border-radius: 10px;
       overflow: hidden;
       background: #ffe4ef;
@@ -237,7 +270,7 @@
       color: var(--rose-gold);
       margin-top: -6px;
       margin-bottom: 14px;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     /* ─── STAGE 3: REASONS WHY I LOVE YOU ─── */
@@ -279,9 +312,7 @@
       min-width: 32px;
     }
 
-    .reason-body {
-      flex: 1;
-    }
+    .reason-body { flex: 1; }
 
     .reason-title {
       font-weight: 700;
@@ -296,7 +327,7 @@
       line-height: 1.45;
     }
 
-    /* ─── STAGE 4: COUNTDOWN (MOBILE GRID) ─── */
+    /* ─── STAGE 4: COUNTDOWN ─── */
     #stage4 {
       background: radial-gradient(circle at center, #fffaf0 0%, #ffe4ec 50%, #ffd6e7 100%);
     }
@@ -337,7 +368,7 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE STARRY NIGHT ─── */
+    /* ─── STAGE 5: GRAND FINALE WITH COUPLE PHOTO ─── */
     #stage5 {
       background: radial-gradient(circle at center, #240b17 0%, #15050e 60%, #0a0206 100%);
       color: #fff;
@@ -345,27 +376,27 @@
 
     .finale-portrait-wrap {
       position: relative;
-      width: clamp(150px, 42vw, 200px);
-      height: clamp(150px, 42vw, 200px);
+      width: clamp(170px, 46vw, 230px);
+      height: clamp(170px, 46vw, 230px);
       margin: 0 auto 16px;
       border-radius: 50%;
-      padding: 5px;
+      padding: 6px;
       background: linear-gradient(135deg, var(--gold), var(--rose), var(--gold-light));
-      box-shadow: 0 0 40px rgba(255, 107, 157, 0.55), 0 0 80px rgba(212, 168, 83, 0.25);
+      box-shadow: 0 0 45px rgba(255, 107, 157, 0.6), 0 0 90px rgba(212, 168, 83, 0.3);
     }
 
     .crown-icon {
       position: absolute;
-      top: -30px; left: 50%;
-      transform: translateX(-50%) rotate(-5deg);
-      font-size: 2.6rem;
-      filter: drop-shadow(0 4px 10px rgba(212, 168, 83, 0.8));
+      top: -32px; left: 50%;
+      transform: translateX(-50%) rotate(-4deg);
+      font-size: 2.8rem;
+      filter: drop-shadow(0 4px 12px rgba(212, 168, 83, 0.9));
       animation: crownFloat 2s ease-in-out infinite;
     }
 
     @keyframes crownFloat {
-      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); }
-      50%      { transform: translateX(-50%) translateY(-6px) rotate(5deg); }
+      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-4deg); }
+      50%      { transform: translateX(-50%) translateY(-6px) rotate(4deg); }
     }
 
     .finale-title {
@@ -382,20 +413,20 @@
       font-style: italic;
       color: #ffc2d6;
       font-size: clamp(0.88rem, 3vw, 1.1rem);
-      max-width: 440px;
+      max-width: 450px;
       line-height: 1.7;
-      margin: 0 auto 18px;
+      margin: 0 auto 16px;
       padding: 0 10px;
     }
 
     .finale-signature {
       font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-size: clamp(1.5rem, 5vw, 2.3rem);
       color: var(--gold-light);
       text-shadow: 0 0 12px rgba(245, 212, 138, 0.6);
     }
 
-    /* ─── BUTTONS (TOUCH FRIENDLY) ─── */
+    /* ─── BUTTONS ─── */
     .btn-next {
       background: linear-gradient(135deg, var(--rose), var(--pink));
       color: #fff;
@@ -413,9 +444,7 @@
       width: min(280px, 85vw);
     }
 
-    .btn-next:active {
-      transform: scale(0.96);
-    }
+    .btn-next:active { transform: scale(0.96); }
 
     .btn-gold {
       background: linear-gradient(135deg, var(--gold), var(--gold-light));
@@ -439,15 +468,11 @@
       transform: translateX(-50%);
       display: flex; gap: 10px;
       z-index: 9999;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(10px);
       padding: 8px 16px;
       border-radius: 30px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-
-    .stage:nth-child(6) #dots-nav {
-      background: rgba(40, 10, 25, 0.8);
     }
 
     .dot {
@@ -488,10 +513,19 @@
 </head>
 <body>
 
+<!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
+<button id="music-btn" onclick="toggleMusic()">
+  <span class="music-note">🎵</span> <span id="music-lbl">Play Song</span>
+</button>
+
+<audio id="bg-music" loop preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112185.mp3" type="audio/mpeg"/>
+</audio>
+
 <div id="progress-bar" style="width: 20%;"></div>
 <div id="confetti-canvas"></div>
 
-<!-- ─── STAGE 1: HERO (MOBILE OPTIMIZED) ─── -->
+<!-- ─── STAGE 1: HERO ─── -->
 <div class="stage active" id="stage1">
   <div class="particles-bg" id="particles1"></div>
   
@@ -504,11 +538,11 @@
     <h1 class="hero-title">Hi My Dear Sweety! 🌸</h1>
     <p class="hero-sub">Praveena, I created something very precious, made with all my love just for you...</p>
 
-    <button class="btn-next" onclick="nextStage(2)">Open Your Surprise 🎁</button>
+    <button class="btn-next" onclick="nextStage(2); playMusicIfPaused();">Open Your Surprise 🎁</button>
   </div>
 </div>
 
-<!-- ─── STAGE 2: MEMORIES POLAROID GALLERY (MOBILE SWIPE) ─── -->
+<!-- ─── STAGE 2: MEMORIES POLAROID GALLERY ─── -->
 <div class="stage" id="stage2">
   <div class="particles-bg" id="particles2"></div>
 
@@ -526,6 +560,13 @@
 
       <div class="polaroid-card">
         <div class="polaroid-img-wrap">
+          <img src="images/couple.jpg" alt="Us Together" class="polaroid-img"/>
+        </div>
+        <div class="polaroid-caption">Us Together 💕</div>
+      </div>
+
+      <div class="polaroid-card">
+        <div class="polaroid-img-wrap">
           <img src="images/praveena1.jpg" alt="Praveena Sweety" class="polaroid-img"/>
         </div>
         <div class="polaroid-caption">Your Cute Smile 💖</div>
@@ -538,7 +579,7 @@
         <div class="polaroid-caption">Pure Elegance ✨</div>
       </div>
     </div>
-    <div class="swipe-hint">👈 Swipe to see more photos 👉</div>
+    <div class="swipe-hint">👈 Swipe to see all our photos 👉</div>
 
     <button class="btn-next" onclick="nextStage(3)">Next Secret ✨</button>
   </div>
@@ -606,7 +647,7 @@
   </div>
 </div>
 
-<!-- ─── STAGE 4: BIRTHDAY COUNTDOWN ─── -->
+<!-- ─── STAGE 4: COUNTDOWN ─── -->
 <div class="stage" id="stage4">
   <div class="particles-bg" id="particles4"></div>
 
@@ -631,14 +672,14 @@
   </div>
 </div>
 
-<!-- ─── STAGE 5: GRAND FINALE STARRY NIGHT ─── -->
+<!-- ─── STAGE 5: GRAND FINALE WITH COUPLE PHOTO ─── -->
 <div class="stage" id="stage5">
   <div class="particles-bg" id="stars-bg"></div>
 
   <div class="stage-content">
     <div class="finale-portrait-wrap">
       <div class="crown-icon">👑</div>
-      <img src="images/praveena3.jpg" alt="Queen Praveena Pink Dress" class="portrait-img"/>
+      <img src="images/couple.jpg" alt="Us Together Forever" class="portrait-img"/>
     </div>
 
     <h2 class="finale-title">Happy Birthday,<br/>My Queen Praveena 🌸</h2>
@@ -646,12 +687,12 @@
     <p class="finale-letter">
       My dearest Sweety,<br/><br/>
       On this special day as you turn 20, I want you to know how deeply cherished and loved you are.
-      You bring so much beauty, warmth, and laughter into my life.
-      May your year ahead be filled with endless joy and magic.<br/><br/>
+      Being by your side is the best gift in the world.
+      May your year ahead be filled with endless joy, magic, and sweet love.<br/><br/>
       I will always be right here, celebrating you today and forever. 💖
     </p>
 
-    <div class="finale-signature">Forever & Always Yours 💕</div>
+    <div class="finale-signature">Together Forever & Always 💕</div>
 
     <button class="btn-next btn-gold" onclick="launchConfetti()">🎊 Celebrate Praveena! 🎊</button>
   </div>
@@ -669,6 +710,30 @@
 <script>
   let currentStage = 1;
   const totalStages = 5;
+  const audio = document.getElementById('bg-music');
+  let isPlaying = false;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      audio.pause();
+      document.getElementById('music-lbl').textContent = 'Play Song';
+      isPlaying = false;
+    } else {
+      audio.play().then(() => {
+        document.getElementById('music-lbl').textContent = 'Playing 🎶';
+        isPlaying = true;
+      }).catch(err => console.log(err));
+    }
+  }
+
+  function playMusicIfPaused() {
+    if (!isPlaying) {
+      audio.play().then(() => {
+        document.getElementById('music-lbl').textContent = 'Playing 🎶';
+        isPlaying = true;
+      }).catch(err => console.log(err));
+    }
+  }
 
   function nextStage(n) {
     if (n === currentStage) return;
@@ -766,7 +831,7 @@
     }
   }
 
-  // Swipe gesture for mobile phone screens
+  // Touch Swipe for mobile
   let touchStartX = 0;
   let touchStartY = 0;
   document.addEventListener('touchstart', e => {
@@ -778,7 +843,6 @@
     const dx = touchStartX - e.changedTouches[0].clientX;
     const dy = touchStartY - e.changedTouches[0].clientY;
 
-    // Ensure horizontal swipe dominant
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
       if (dx > 0 && currentStage < totalStages) nextStage(currentStage + 1);
       if (dx < 0 && currentStage > 1) nextStage(currentStage - 1);
