@@ -368,7 +368,7 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE WITH ENLARGED CLEAR COUPLE PHOTO ─── */
+    /* ─── STAGE 5: GRAND FINALE PERFECT CIRCLE FRAME ─── */
     #stage5 {
       background: radial-gradient(circle at center, #240b17 0%, #15050e 60%, #0a0206 100%);
       color: #fff;
@@ -376,10 +376,10 @@
 
     .finale-portrait-wrap {
       position: relative;
-      width: clamp(240px, 72vw, 320px);
-      height: clamp(200px, 58vw, 260px);
+      width: clamp(230px, 68vw, 290px);
+      height: clamp(230px, 68vw, 290px);
       margin: 0 auto 16px;
-      border-radius: 28px;
+      border-radius: 50%;
       padding: 6px;
       background: linear-gradient(135deg, var(--gold), var(--rose), var(--gold-light));
       box-shadow: 0 0 50px rgba(255, 107, 157, 0.65), 0 0 100px rgba(212, 168, 83, 0.35);
@@ -388,8 +388,8 @@
     .finale-portrait-wrap .portrait-img {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 20%;
-      border-radius: 22px;
+      object-position: 45% 20%;
+      border-radius: 50%;
       display: block;
     }
 
@@ -527,7 +527,6 @@
 </button>
 
 <audio id="bg-music" loop preload="auto" playsinline>
-  <!-- Direct fast audio stream -->
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a77d12.mp3?filename=romantic-melody-10986.mp3" type="audio/mpeg"/>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"/>
 </audio>
@@ -682,7 +681,7 @@
   </div>
 </div>
 
-<!-- ─── STAGE 5: GRAND FINALE WITH ENLARGED CLEAR COUPLE PHOTO ─── -->
+<!-- ─── STAGE 5: GRAND FINALE PERFECT CIRCLE COUPLE PHOTO ─── -->
 <div class="stage" id="stage5">
   <div class="particles-bg" id="stars-bg"></div>
 
@@ -723,7 +722,6 @@
   const audio = document.getElementById('bg-music');
   let isMusicPlaying = false;
 
-  // Web Audio API Synthesizer Fallback (Guarantees music on all phones)
   let audioCtx = null;
   let synthTimer = null;
 
@@ -734,10 +732,10 @@
       audioCtx = new AudioContext();
 
       const notes = [
-        261.63, 329.63, 392.00, 523.25, // C4, E4, G4, C5
-        440.00, 349.23, 293.66, 392.00, // A4, F4, D4, G4
-        329.63, 261.63, 220.00, 293.66, // E4, C4, A3, D4
-        349.23, 392.00, 440.00, 523.25  // F4, G4, A4, C5
+        261.63, 329.63, 392.00, 523.25,
+        440.00, 349.23, 293.66, 392.00,
+        329.63, 261.63, 220.00, 293.66,
+        349.23, 392.00, 440.00, 523.25
       ];
       let noteIndex = 0;
 
@@ -778,12 +776,10 @@
   function startMusic() {
     if (isMusicPlaying) return;
     
-    // Try HTML5 Audio MP3 stream
     audio.play().then(() => {
       isMusicPlaying = true;
       document.getElementById('music-lbl').textContent = 'Playing 🎶';
     }).catch(err => {
-      // Mobile autoplay blocked MP3 -> fallback to Web Audio Synth
       playRomanticMelodySynth();
     });
   }
@@ -804,7 +800,6 @@
     }
   }
 
-  // Global user interaction listener to unlock audio on mobile Safari/Chrome
   document.addEventListener('touchstart', function unlockAudio() {
     if (!isMusicPlaying) {
       startMusic();
@@ -831,16 +826,13 @@
     next.classList.add('active');
     currentStage = n;
 
-    // Progress Bar
     document.getElementById('progress-bar').style.width = (n / totalStages * 100) + '%';
 
-    // Update Dots
     document.querySelectorAll('.dot').forEach((dot, index) => {
       dot.classList.toggle('active', index === n - 1);
     });
   }
 
-  // ── Floating Emoji Particles ──
   const heartIcons = ['💖','🌸','💕','✨','🌹','💗','🎀','⭐','💫'];
   ['particles1', 'particles2', 'particles3', 'particles4'].forEach(id => {
     const el = document.getElementById(id);
@@ -857,7 +849,6 @@
     }
   });
 
-  // ── Twinkling Night Stars (Stage 5) ──
   const starsContainer = document.getElementById('stars-bg');
   for (let i = 0; i < 70; i++) {
     const s = document.createElement('div');
@@ -872,11 +863,10 @@
     starsContainer.appendChild(s);
   }
 
-  // ── Countdown Timer to Sept 3rd ──
   function runCountdown() {
     const now = new Date();
     const year = now.getFullYear();
-    let bday = new Date(year, 8, 3, 0, 0, 0); // Sept 3
+    let bday = new Date(year, 8, 3, 0, 0, 0);
     if (now > bday) bday = new Date(year + 1, 8, 3, 0, 0, 0);
 
     const diff = bday - now;
@@ -895,7 +885,6 @@
   runCountdown();
   setInterval(runCountdown, 1000);
 
-  // ── Confetti Burst ──
   const confettiColors = ['#ff6b9d','#ff4d79','#ffd700','#ffb3cc','#b76e79','#f5d48a','#ffffff'];
   function launchConfetti() {
     const layer = document.getElementById('confetti-canvas');
@@ -915,7 +904,6 @@
     }
   }
 
-  // Touch Swipe for mobile
   let touchStartX = 0;
   let touchStartY = 0;
   document.addEventListener('touchstart', e => {
