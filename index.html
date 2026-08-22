@@ -368,7 +368,7 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE PERFECT CIRCLE FRAME ─── */
+    /* ─── STAGE 5: GRAND FINALE PERFECT CIRCLE COUPLE PHOTO ─── */
     #stage5 {
       background: radial-gradient(circle at center, #240b17 0%, #15050e 60%, #0a0206 100%);
       color: #fff;
@@ -523,12 +523,13 @@
 
 <!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
 <button id="music-btn" onclick="userToggleMusic()">
-  <span class="music-note">🎵</span> <span id="music-lbl">Tap for Song 🎶</span>
+  <span class="music-note">🎵</span> <span id="music-lbl">Pemari Song 🎶</span>
 </button>
 
 <audio id="bg-music" loop preload="auto" playsinline>
+  <!-- User attached Tamil Song: Pemari -->
+  <source src="song.mp3" type="audio/mpeg"/>
   <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a77d12.mp3?filename=romantic-melody-10986.mp3" type="audio/mpeg"/>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg"/>
 </audio>
 
 <div id="progress-bar" style="width: 20%;"></div>
@@ -789,7 +790,7 @@
       audio.pause();
       stopSynth();
       isMusicPlaying = false;
-      document.getElementById('music-lbl').textContent = 'Play Song 🎶';
+      document.getElementById('music-lbl').textContent = 'Pemari Song 🎶';
     } else {
       audio.play().then(() => {
         isMusicPlaying = true;
