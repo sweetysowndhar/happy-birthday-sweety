@@ -194,7 +194,7 @@
       line-height: 1.5;
     }
 
-    /* ─── STAGE 2: MEMORIES POLAROID GALLERY ─── */
+    /* ─── STAGE 2: MEMORIES POLAROID GALLERY (VERTICAL PORTRAIT RATIO) ─── */
     #stage2 {
       background: radial-gradient(circle at center, #fff8fb 0%, #ffe4ef 50%, #ffd6e7 100%);
     }
@@ -210,7 +210,7 @@
       color: var(--rose-gold);
       font-size: clamp(0.85rem, 3vw, 1.05rem);
       font-style: italic;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .polaroid-scroll {
@@ -219,7 +219,7 @@
       width: 100%;
       max-width: 480px;
       overflow-x: auto;
-      padding: 10px 6px 20px;
+      padding: 10px 6px 16px;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       justify-content: flex-start;
@@ -230,12 +230,12 @@
     }
 
     .polaroid-card {
-      flex: 0 0 min(220px, 75vw);
+      flex: 0 0 min(230px, 75vw);
       scroll-snap-align: center;
       background: #ffffff;
       padding: 10px 10px 16px;
-      border-radius: 16px;
-      box-shadow: 0 10px 28px rgba(255, 107, 157, 0.2);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(255, 107, 157, 0.22);
       transition: transform 0.3s;
     }
 
@@ -246,8 +246,8 @@
 
     .polaroid-img-wrap {
       width: 100%;
-      height: 205px;
-      border-radius: 10px;
+      height: clamp(270px, 60vh, 310px); /* Tall Vertical Portrait Shape */
+      border-radius: 12px;
       overflow: hidden;
       background: #ffe4ef;
     }
@@ -255,11 +255,12 @@
     .polaroid-img {
       width: 100%; height: 100%;
       object-fit: cover;
+      object-position: center 15%;
     }
 
     .polaroid-caption {
       font-family: 'Dancing Script', cursive;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       color: var(--rose-gold);
       margin-top: 10px;
       font-weight: 600;
@@ -268,8 +269,8 @@
     .swipe-hint {
       font-size: 0.75rem;
       color: var(--rose-gold);
-      margin-top: -6px;
-      margin-bottom: 14px;
+      margin-top: -2px;
+      margin-bottom: 12px;
       opacity: 0.85;
     }
 
@@ -552,7 +553,7 @@
   </div>
 </div>
 
-<!-- ─── STAGE 2: MEMORIES POLAROID GALLERY ─── -->
+<!-- ─── STAGE 2: MEMORIES POLAROID GALLERY (VERTICAL PORTRAIT CARDS) ─── -->
 <div class="stage" id="stage2">
   <div class="particles-bg" id="particles2"></div>
 
@@ -570,21 +571,21 @@
 
       <div class="polaroid-card">
         <div class="polaroid-img-wrap">
-          <img src="images/praveena3.jpg" alt="Praveena Pink Dress" class="polaroid-img"/>
+          <img src="images/praveena3.jpg" alt="Praveena Pink Dress" class="polaroid-img" style="object-position: center 10%;"/>
         </div>
         <div class="polaroid-caption">Pretty in Pink 🌸</div>
       </div>
 
       <div class="polaroid-card">
         <div class="polaroid-img-wrap">
-          <img src="images/praveena1.jpg" alt="Praveena Sweety" class="polaroid-img"/>
+          <img src="images/praveena1.jpg" alt="Praveena Sweety" class="polaroid-img" style="object-position: center 10%;"/>
         </div>
         <div class="polaroid-caption">Your Cute Smile 💖</div>
       </div>
 
       <div class="polaroid-card">
         <div class="polaroid-img-wrap">
-          <img src="images/praveena2.jpg" alt="Praveena" class="polaroid-img"/>
+          <img src="images/praveena2.jpg" alt="Praveena" class="polaroid-img" style="object-position: center 10%;"/>
         </div>
         <div class="polaroid-caption">Pure Elegance ✨</div>
       </div>
