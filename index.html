@@ -616,7 +616,7 @@
 
 <!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
 <button id="music-btn" onclick="togglePlaylistPanel()">
-  <span class="music-note">🎵</span> <span id="music-lbl">Music Playlist 🎶</span>
+  <span class="music-note">🎵</span> <span id="music-lbl">WhatsApp Track 🎙️</span>
 </button>
 
 <!-- ─── PREMIUM PLAYLIST SELECTION PANEL ─── -->
@@ -624,15 +624,15 @@
   <div class="panel-header">💝 Praveena's Playlist 🎵</div>
   <div class="playlist-items">
     <div class="playlist-item active" onclick="playTrack(0)">
+      <span>🎙️ WhatsApp Voice Track</span>
+      <span class="playlist-item-play">🔊</span>
+    </div>
+    <div class="playlist-item" onclick="playTrack(1)">
       <span>🌸 Romantic Piano</span>
       <span class="playlist-item-play">▶️</span>
     </div>
-    <div class="playlist-item" onclick="playTrack(1)">
-      <span>🎵 Pemari Tamil Song</span>
-      <span class="playlist-item-play">▶️</span>
-    </div>
     <div class="playlist-item" onclick="playTrack(2)">
-      <span>🎙️ WhatsApp Voice Track</span>
+      <span>🎵 Pemari Tamil Song</span>
       <span class="playlist-item-play">▶️</span>
     </div>
     <div class="playlist-item" onclick="playTrack(3)">
@@ -648,8 +648,8 @@
 </div>
 
 <audio id="bg-music" loop preload="auto" playsinline>
-  <!-- Primary source: original Romantic Piano Track -->
-  <source src="romantic-piano.mp3" type="audio/mpeg"/>
+  <!-- Primary source is WhatsApp Audio Track (song2.mp3) -->
+  <source src="song2.mp3" type="audio/mpeg"/>
 </audio>
 
 <div id="progress-bar" style="width: 20%;"></div>
@@ -845,9 +845,9 @@
 
   // Track Playlist configuration
   const playlist = [
+    { name: "🎙️ WhatsApp Track", src: "song2.mp3" },
     { name: "🌸 Romantic Piano", src: "romantic-piano.mp3" },
     { name: "🎵 Pemari Tamil Song", src: "song.mp3" },
-    { name: "🎙️ WhatsApp Voice Track", src: "song2.mp3" },
     { name: "🎶 Mungaru Melody", src: "song3.mp3" }
   ];
   let currentTrackIndex = 0;
