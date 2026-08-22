@@ -452,6 +452,10 @@
       display: block;
     }
 
+    .cd-val::after {
+      content: '';
+    }
+
     .cd-lbl {
       font-size: 0.65rem;
       font-weight: 700;
@@ -461,10 +465,10 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE PERFECT CIRCLE COUPLE PHOTO ─── */
+    /* ─── STAGE 5: GRAND FINALE LUXURY PINK & GOLD THEME ─── */
     #stage5 {
-      background: radial-gradient(circle at center, #240b17 0%, #15050e 60%, #0a0206 100%);
-      color: #fff;
+      background: radial-gradient(circle at center, #ffffff 0%, #fff2f6 50%, #ffe4ee 100%);
+      color: #3d1a24;
     }
 
     .finale-portrait-wrap {
@@ -475,7 +479,7 @@
       border-radius: 50%;
       padding: 6px;
       background: linear-gradient(135deg, var(--gold), var(--rose), var(--gold-light));
-      box-shadow: 0 0 50px rgba(255, 107, 157, 0.65), 0 0 100px rgba(212, 168, 83, 0.35);
+      box-shadow: 0 15px 45px rgba(255, 77, 121, 0.28), 0 0 0 8px rgba(255, 255, 255, 0.85);
     }
 
     .finale-portrait-wrap .portrait-img {
@@ -503,16 +507,17 @@
     .finale-title {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(2.2rem, 8vw, 4.5rem);
-      color: #fff;
-      text-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+      background: linear-gradient(135deg, var(--rose) 0%, var(--rose-gold) 50%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       margin-bottom: 8px;
       line-height: 1.15;
+      filter: drop-shadow(0 2px 4px rgba(255,77,121,0.15));
     }
 
     .finale-letter {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      color: #ffc2d6;
+      color: #5c2331;
       font-size: clamp(0.88rem, 3vw, 1.1rem);
       max-width: 450px;
       line-height: 1.7;
@@ -523,8 +528,8 @@
     .finale-signature {
       font-family: 'Dancing Script', cursive;
       font-size: clamp(1.5rem, 5vw, 2.3rem);
-      color: var(--gold-light);
-      text-shadow: 0 0 12px rgba(245, 212, 138, 0.6);
+      color: var(--deep-rose);
+      text-shadow: 0 1px 4px rgba(216, 27, 96, 0.15);
     }
 
     /* ─── BUTTONS ─── */
@@ -1007,17 +1012,29 @@
     }
   });
 
+  // ── Stage 5 Luxury Sparkles & Bokeh Generator ──
   const starsContainer = document.getElementById('stars-bg');
-  for (let i = 0; i < 70; i++) {
+  const luxuryColors = ['#ff6b9d', '#ff4d79', '#ffd700', '#ffc2d6', '#f5d48a'];
+  for (let i = 0; i < 50; i++) {
     const s = document.createElement('div');
     s.style.position = 'absolute';
-    s.style.background = '#ffffff';
-    s.style.borderRadius = '50%';
+    
+    // Choose randomly between a golden star and a glowing pink bokeh bubble
+    if (Math.random() > 0.5) {
+      s.textContent = '✨';
+      s.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
+      s.style.color = luxuryColors[Math.floor(Math.random() * luxuryColors.length)];
+      s.style.opacity = Math.random() * 0.8 + 0.2;
+    } else {
+      s.style.background = `radial-gradient(circle, rgba(255, 107, 157, 0.45) 0%, rgba(255, 255, 255, 0) 70%)`;
+      s.style.borderRadius = '50%';
+      const size = Math.random() * 25 + 10;
+      s.style.width = s.style.height = size + 'px';
+      s.style.opacity = Math.random() * 0.7 + 0.2;
+    }
+
     s.style.left = Math.random() * 100 + 'vw';
     s.style.top = Math.random() * 100 + 'vh';
-    s.style.width = s.style.height = (Math.random() * 2.5 + 1) + 'px';
-    s.style.boxShadow = '0 0 ' + (Math.random() * 6 + 2) + 'px #fff';
-    s.style.opacity = Math.random();
     starsContainer.appendChild(s);
   }
 
