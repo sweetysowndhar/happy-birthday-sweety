@@ -461,42 +461,57 @@
       margin-top: 4px;
     }
 
-    /* ─── STAGE 5: GRAND FINALE WITH COUPLE BACKGROUND IMAGE ─── */
+    /* ─── STAGE 5: GRAND FINALE WITH HIGHLY VISIBLE BACKGROUND IMAGE ─── */
     #stage5 {
-      background: url('images/couple.jpg') no-repeat center 15% / cover;
+      background: url('images/couple.jpg') no-repeat center 25% / cover;
       color: #3d1a24;
       position: relative;
     }
 
-    /* Blurred glass overlay for Stage 5 to make text perfectly readable */
+    /* Semi-transparent protective layer - NO blur so background picture is perfectly clear and sharp! */
     #stage5::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 242, 246, 0.88) 100%);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 240, 245, 0.28);
       z-index: 0;
     }
 
     #stage5 .stage-content {
       position: relative;
       z-index: 2;
+      padding: 10px 0;
     }
 
     #stage5 #stars-bg {
       z-index: 1;
     }
 
+    /* Glassmorphic content card to ensure beautiful look and perfect readability of letters */
+    .finale-card {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 28px;
+      padding: 24px 20px 20px;
+      width: min(460px, 94vw);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
     .finale-portrait-wrap {
       position: relative;
-      width: clamp(230px, 68vw, 290px);
-      height: clamp(230px, 68vw, 290px);
+      width: clamp(200px, 55vw, 240px);
+      height: clamp(200px, 55vw, 240px);
       margin: 0 auto 16px;
       border-radius: 50%;
-      padding: 6px;
+      padding: 5px;
       background: linear-gradient(135deg, var(--gold), var(--rose), var(--gold-light));
-      box-shadow: 0 15px 45px rgba(255, 77, 121, 0.28), 0 0 0 8px rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 30px rgba(255, 77, 121, 0.22);
     }
 
     .finale-portrait-wrap .portrait-img {
@@ -509,10 +524,10 @@
 
     .crown-icon {
       position: absolute;
-      top: -30px; left: 50%;
+      top: -24px; left: 50%;
       transform: translateX(-50%) rotate(-4deg);
-      font-size: 2.8rem;
-      filter: drop-shadow(0 4px 12px rgba(212, 168, 83, 0.9));
+      font-size: 2.5rem;
+      filter: drop-shadow(0 4px 10px rgba(212, 168, 83, 0.8));
       animation: crownFloat 2s ease-in-out infinite;
     }
 
@@ -523,30 +538,28 @@
 
     .finale-title {
       font-family: 'Dancing Script', cursive;
-      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      font-size: clamp(2rem, 7.5vw, 3.8rem);
       background: linear-gradient(135deg, var(--rose) 0%, var(--rose-gold) 50%, var(--gold) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       margin-bottom: 8px;
       line-height: 1.15;
-      filter: drop-shadow(0 2px 4px rgba(255,77,121,0.15));
     }
 
     .finale-letter {
       font-family: 'Playfair Display', serif;
       font-style: italic;
       color: #5c2331;
-      font-size: clamp(0.88rem, 3vw, 1.1rem);
-      max-width: 450px;
-      line-height: 1.7;
-      margin: 0 auto 16px;
-      padding: 0 10px;
+      font-size: clamp(0.85rem, 2.8vw, 1.05rem);
+      max-width: 420px;
+      line-height: 1.65;
+      margin: 0 auto 14px;
+      padding: 0 5px;
     }
 
     .finale-signature {
       font-family: 'Dancing Script', cursive;
-      font-size: clamp(1.5rem, 5vw, 2.3rem);
+      font-size: clamp(1.4rem, 4.8vw, 2.1rem);
       color: var(--deep-rose);
-      text-shadow: 0 1px 4px rgba(216, 27, 96, 0.15);
     }
 
     /* ─── BUTTONS ─── */
@@ -824,27 +837,30 @@
   </div>
 </div>
 
-<!-- ─── STAGE 5: GRAND FINALE WITH BLURRED COUPLE PHOTO BACKGROUND ─── -->
+<!-- ─── STAGE 5: GRAND FINALE WITH HIGHTLY VISIBLE BACKGROUND & GLASS LETTER CARD ─── -->
 <div class="stage" id="stage5">
   <div class="particles-bg" id="stars-bg"></div>
 
   <div class="stage-content">
-    <div class="finale-portrait-wrap">
-      <div class="crown-icon">👑</div>
-      <img src="images/couple.jpg" alt="Us Together Forever" class="portrait-img"/>
+    <!-- Glassmorphic Card wraps content for perfect readability over clear background -->
+    <div class="finale-card">
+      <div class="finale-portrait-wrap">
+        <div class="crown-icon">👑</div>
+        <img src="images/couple.jpg" alt="Us Together Forever" class="portrait-img"/>
+      </div>
+
+      <h2 class="finale-title">Happy Birthday,<br/>My Queen Praveena 🌸</h2>
+
+      <p class="finale-letter">
+        My dearest Sweety,<br/><br/>
+        On this special day as you turn 20, I want you to know how deeply cherished and loved you are.
+        Being by your side is the best gift in the world.
+        May your year ahead be filled with endless joy, magic, and sweet love.<br/><br/>
+        I will always be right here, celebrating you today and forever. 💖
+      </p>
+
+      <div class="finale-signature">Together Forever & Always 💕</div>
     </div>
-
-    <h2 class="finale-title">Happy Birthday,<br/>My Queen Praveena 🌸</h2>
-
-    <p class="finale-letter">
-      My dearest Sweety,<br/><br/>
-      On this special day as you turn 20, I want you to know how deeply cherished and loved you are.
-      Being by your side is the best gift in the world.
-      May your year ahead be filled with endless joy, magic, and sweet love.<br/><br/>
-      I will always be right here, celebrating you today and forever. 💖
-    </p>
-
-    <div class="finale-signature">Together Forever & Always 💕</div>
 
     <button class="btn-next btn-gold" onclick="launchConfetti()">🎊 Celebrate Praveena! 🎊</button>
   </div>
@@ -962,6 +978,16 @@
     let prevIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
     playTrack(prevIndex);
   }
+
+  // Set initial playlist active highlight on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.playlist-item');
+    if(items[0]) {
+      items[0].classList.add('active');
+      const icon = items[0].querySelector('.playlist-item-play');
+      if (icon) icon.textContent = '🔊';
+    }
+  });
 
   function toggleMusicState() {
     if (isMusicPlaying) {
