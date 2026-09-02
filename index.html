@@ -104,98 +104,6 @@
       50%      { transform: scale(1.2) rotate(10deg); }
     }
 
-    /* ─── PREMIUM SLIDE-OUT PLAYLIST PANEL ─── */
-    #playlist-panel {
-      position: fixed;
-      top: 76px; right: 16px;
-      width: 280px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border: 2px solid var(--light-pink);
-      border-radius: 20px;
-      padding: 16px;
-      box-shadow: 0 12px 36px rgba(255, 77, 121, 0.25);
-      z-index: 99998;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      transform: translateY(-20px);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    #playlist-panel.open {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .panel-header {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--deep-rose);
-      text-align: center;
-      border-bottom: 1.5px solid rgba(255, 107, 157, 0.2);
-      padding-bottom: 8px;
-    }
-
-    .playlist-items {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .playlist-item {
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: rgba(255, 107, 157, 0.05);
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: #3d1a24;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.2s ease;
-      border: 1px solid transparent;
-    }
-
-    .playlist-item:hover {
-      background: rgba(255, 107, 157, 0.12);
-    }
-
-    .playlist-item.active {
-      background: linear-gradient(135deg, var(--rose), var(--pink));
-      color: #ffffff;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(255, 77, 121, 0.25);
-    }
-
-    .playlist-item-play {
-      font-size: 0.85rem;
-    }
-
-    .playlist-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      margin-top: 4px;
-      padding-top: 8px;
-      border-top: 1.5px solid rgba(255, 107, 157, 0.15);
-    }
-
-    .ctrl-btn {
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      cursor: pointer;
-      color: var(--deep-rose);
-      transition: transform 0.2s;
-    }
-
-    .ctrl-btn:active { transform: scale(0.85); }
-
     /* ─── BACKGROUND PARTICLES ─── */
     .particles-bg {
       position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
@@ -286,7 +194,7 @@
       line-height: 1.5;
     }
 
-    /* ─── STAGE 2: MEMORIES POLAROID GALLERY (VERTICAL PORTRAIT CARDS) ─── */
+    /* ─── STAGE 2: MEMORIES POLAROID GALLERY ─── */
     #stage2 {
       background: radial-gradient(circle at center, #fff8fb 0%, #ffe4ef 50%, #ffd6e7 100%);
     }
@@ -650,40 +558,12 @@
 <body>
 
 <!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
-<button id="music-btn" onclick="togglePlaylistPanel()">
-  <span class="music-note">🎵</span> <span id="music-lbl">WhatsApp Track 🎙️</span>
+<button id="music-btn" onclick="userToggleMusic()">
+  <span class="music-note">🎵</span> <span id="music-lbl">Play Song 🎶</span>
 </button>
 
-<!-- ─── PREMIUM PLAYLIST SELECTION PANEL ─── -->
-<div id="playlist-panel">
-  <div class="panel-header">💝 Praveena's Playlist 🎵</div>
-  <div class="playlist-items">
-    <div class="playlist-item active" onclick="playTrack(0)">
-      <span>🎙️ WhatsApp Voice Track</span>
-      <span class="playlist-item-play">🔊</span>
-    </div>
-    <div class="playlist-item" onclick="playTrack(1)">
-      <span>🌸 Romantic Piano</span>
-      <span class="playlist-item-play">▶️</span>
-    </div>
-    <div class="playlist-item" onclick="playTrack(2)">
-      <span>🎵 Pemari Tamil Song</span>
-      <span class="playlist-item-play">▶️</span>
-    </div>
-    <div class="playlist-item" onclick="playTrack(3)">
-      <span>🎶 Mungaru Melody</span>
-      <span class="playlist-item-play">▶️</span>
-    </div>
-  </div>
-  <div class="playlist-controls">
-    <button class="ctrl-btn" onclick="prevTrack()">⏮️</button>
-    <button class="ctrl-btn" onclick="toggleMusicState()" id="panel-play-btn">⏸️</button>
-    <button class="ctrl-btn" onclick="nextTrack()">⏭️</button>
-  </div>
-</div>
-
 <audio id="bg-music" loop preload="auto" playsinline>
-  <!-- Primary source is WhatsApp Audio Track (song2.mp3) -->
+  <!-- WhatsApp Audio Track -->
   <source src="song2.mp3" type="audio/mpeg"/>
 </audio>
 
@@ -837,7 +717,7 @@
   </div>
 </div>
 
-<!-- ─── STAGE 5: GRAND FINALE WITH HIGHTLY VISIBLE BACKGROUND & GLASS LETTER CARD ─── -->
+<!-- ─── STAGE 5: GRAND FINALE WITH HIGHLY VISIBLE BACKGROUND & GLASS LETTER CARD ─── -->
 <div class="stage" id="stage5">
   <div class="particles-bg" id="stars-bg"></div>
 
@@ -881,15 +761,6 @@
   const audio = document.getElementById('bg-music');
   let isMusicPlaying = false;
 
-  // Track Playlist configuration
-  const playlist = [
-    { name: "🎙️ WhatsApp Track", src: "song2.mp3" },
-    { name: "🌸 Romantic Piano", src: "romantic-piano.mp3" },
-    { name: "🎵 Pemari Tamil Song", src: "song.mp3" },
-    { name: "🎶 Mungaru Melody", src: "song3.mp3" }
-  ];
-  let currentTrackIndex = 0;
-
   let audioCtx = null;
   let synthTimer = null;
 
@@ -930,7 +801,6 @@
       synthTimer = setInterval(playNote, 500);
       isMusicPlaying = true;
       document.getElementById('music-lbl').textContent = 'Playing Synth 🎶';
-      document.getElementById('panel-play-btn').textContent = '⏸️';
     } catch(e) { console.log(e); }
   }
 
@@ -942,68 +812,30 @@
     }
   }
 
-  function togglePlaylistPanel() {
-    document.getElementById('playlist-panel').classList.toggle('open');
-  }
-
-  function playTrack(index) {
-    currentTrackIndex = index;
-    stopSynth();
-    audio.src = playlist[index].src;
-    audio.load();
-    
-    // Highlight active item
-    const items = document.querySelectorAll('.playlist-item');
-    items.forEach((item, i) => {
-      item.classList.toggle('active', i === index);
-      const playIcon = item.querySelector('.playlist-item-play');
-      if (playIcon) playIcon.textContent = (i === index) ? '🔊' : '▶️';
-    });
-
+  function startMusic() {
+    if (isMusicPlaying) return;
     audio.play().then(() => {
       isMusicPlaying = true;
-      document.getElementById('music-lbl').textContent = playlist[index].name + ' 🎶';
-      document.getElementById('panel-play-btn').textContent = '⏸️';
+      document.getElementById('music-lbl').textContent = 'Playing Song 🎶';
     }).catch(err => {
       playRomanticMelodySynth();
     });
   }
 
-  function nextTrack() {
-    let nextIndex = (currentTrackIndex + 1) % playlist.length;
-    playTrack(nextIndex);
-  }
-
-  function prevTrack() {
-    let prevIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
-    playTrack(prevIndex);
-  }
-
-  // Set initial playlist active highlight on load
-  document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.playlist-item');
-    if(items[0]) {
-      items[0].classList.add('active');
-      const icon = items[0].querySelector('.playlist-item-play');
-      if (icon) icon.textContent = '🔊';
-    }
-  });
-
-  function toggleMusicState() {
+  function userToggleMusic() {
     if (isMusicPlaying) {
       audio.pause();
       stopSynth();
       isMusicPlaying = false;
-      document.getElementById('music-lbl').textContent = 'Music Playlist 🎶';
-      document.getElementById('panel-play-btn').textContent = '▶️';
+      document.getElementById('music-lbl').textContent = 'Play Song 🎶';
     } else {
-      playTrack(currentTrackIndex);
+      audio.play().then(() => {
+        isMusicPlaying = true;
+        document.getElementById('music-lbl').textContent = 'Playing Song 🎶';
+      }).catch(err => {
+        playRomanticMelodySynth();
+      });
     }
-  }
-
-  function startMusic() {
-    if (isMusicPlaying) return;
-    playTrack(0);
   }
 
   document.addEventListener('touchstart', function unlockAudio() {
