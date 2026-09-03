@@ -428,7 +428,6 @@
       position: relative;
     }
 
-    /* Semi-transparent protective layer - NO blur so background picture is perfectly clear and sharp! */
     #stage5::before {
       content: '';
       position: absolute;
@@ -614,12 +613,12 @@
 
 <!-- ─── FLOATING MUSIC PLAYER BUTTON ─── -->
 <button id="music-btn" onclick="userToggleMusic()">
-  <span class="music-note">🎵</span> <span id="music-lbl">Play Song 🎶</span>
+  <span class="music-note">🎵</span> <span id="music-lbl">Play WhatsApp Audio 🎙️</span>
 </button>
 
 <audio id="bg-music" loop preload="auto" playsinline>
-  <!-- WhatsApp Audio Track -->
   <source src="song2.mp3" type="audio/mpeg"/>
+  <source src="song.mp3" type="audio/mpeg"/>
 </audio>
 
 <div id="progress-bar" style="width: 20%;"></div>
@@ -777,7 +776,6 @@
   <div class="particles-bg" id="stars-bg"></div>
 
   <div class="stage-content">
-    <!-- Glassmorphic Card wraps content for perfect readability over clear background -->
     <div class="finale-card">
       <div class="finale-portrait-wrap">
         <div class="crown-icon">👑</div>
@@ -816,96 +814,54 @@
   const audio = document.getElementById('bg-music');
   let isMusicPlaying = false;
 
-  let audioCtx = null;
-  let synthTimer = null;
-
-  function playRomanticMelodySynth() {
-    if (audioCtx) return;
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
-
-      const notes = [
-        261.63, 329.63, 392.00, 523.25,
-        440.00, 349.23, 293.66, 392.00,
-        329.63, 261.63, 220.00, 293.66,
-        349.23, 392.00, 440.00, 523.25
-      ];
-      let noteIndex = 0;
-
-      function playNote() {
-        if (!audioCtx) return;
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(notes[noteIndex], audioCtx.currentTime);
-        
-        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.8);
-
-        noteIndex = (noteIndex + 1) % notes.length;
-      }
-
-      synthTimer = setInterval(playNote, 500);
-      isMusicPlaying = true;
-      document.getElementById('music-lbl').textContent = 'Playing Synth 🎶';
-    } catch(e) { console.log(e); }
-  }
-
-  function stopSynth() {
-    if (synthTimer) clearInterval(synthTimer);
-    if (audioCtx) {
-      audioCtx.close();
-      audioCtx = null;
-    }
-  }
-
   function startMusic() {
-    if (isMusicPlaying) return;
+    if (!audio) return;
     audio.play().then(() => {
       isMusicPlaying = true;
-      document.getElementById('music-lbl').textContent = 'Playing Song 🎶';
+      document.getElementById('music-lbl').textContent = 'Playing WhatsApp Audio 🎙️';
     }).catch(err => {
-      playRomanticMelodySynth();
+      console.log('Mobile audio waiting for tap gesture', err);
+      document.getElementById('music-lbl').textContent = 'Tap to Play 🎵';
     });
   }
 
   function userToggleMusic() {
-    if (isMusicPlaying) {
+    if (!audio) return;
+    if (isMusicPlaying && !audio.paused) {
       audio.pause();
-      stopSynth();
       isMusicPlaying = false;
-      document.getElementById('music-lbl').textContent = 'Play Song 🎶';
+      document.getElementById('music-lbl').textContent = 'Play WhatsApp Audio 🎵';
     } else {
       audio.play().then(() => {
         isMusicPlaying = true;
-        document.getElementById('music-lbl').textContent = 'Playing Song 🎶';
+        document.getElementById('music-lbl').textContent = 'Playing WhatsApp Audio 🎙️';
       }).catch(err => {
-        playRomanticMelodySynth();
+        console.log('Playback error:', err);
       });
     }
   }
 
+  // Mobile Touch Gesture Audio Unlocker
+  function unlockAudioOnMobile() {
+    if (audio && audio.paused) {
+      audio.play().then(() => {
+        isMusicPlaying = true;
+        document.getElementById('music-lbl').textContent = 'Playing WhatsApp Audio 🎙️';
+      }).catch(() => {});
+    }
+  }
+
+  window.addEventListener('touchstart', unlockAudioOnMobile, { passive: true });
+  window.addEventListener('click', unlockAudioOnMobile, { passive: true });
+  window.addEventListener('pointerdown', unlockAudioOnMobile, { passive: true });
+
   // Interactive Tap Heart Burst Effect
   const loveEmojis = ['💖', '💕', '🌸', '✨', '🌹', '💗', '💓', '💞'];
   document.addEventListener('click', function(e) {
-    if (!isMusicPlaying) {
-      startMusic();
-    }
     createHeartBurst(e.clientX, e.clientY);
   });
 
   document.addEventListener('touchstart', function(e) {
-    if (!isMusicPlaying) {
-      startMusic();
-    }
     if (e.touches && e.touches[0]) {
       createHeartBurst(e.touches[0].clientX, e.touches[0].clientY);
     }
